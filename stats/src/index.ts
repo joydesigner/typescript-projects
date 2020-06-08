@@ -1,20 +1,10 @@
-import { CsvFileReader } from './CsvFileReader';
-import { read } from 'fs';
-enum MatchResult {
-	HomeWin = 'H',
-	AwayWin = 'A',
-	Draw = 'D'
-}
+import { MatchReader } from './MatchReader'
+import {MatchResult} from './MatchResult'
 
-// use enum
-
-const reader = new CsvFileReader('./data/football.csv');
-reader.read();
-
-console.log(reader.data);
-
+const reader = new MatchReader('./data/football.csv')
 let manUnitedWinds = 0;
 
+reader.read();
 for (let match of reader.data) {
 	if (match[1] === 'Man United' && match[5] === MatchResult.HomeWin) {
 		manUnitedWinds++;
